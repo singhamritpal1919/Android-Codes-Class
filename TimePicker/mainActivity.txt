@@ -1,0 +1,45 @@
+package com.example.datepickerexcer;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.TimePicker;
+
+public class TimePickerExc extends AppCompatActivity {
+
+    TimePicker timePicker;
+    TextView textView;
+    Button btn;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_time_picker_exc);
+
+        timePicker = findViewById(R.id.tp);
+        textView = findViewById(R.id.showTime);
+        btn = findViewById(R.id.btn8);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                textView.setText("Appointment Time :"+getCurrentTime());
+            }
+        });
+    }
+    public String getCurrentTime(){
+        int min = timePicker.getMinute();
+
+        String currentTime ;
+        if(min<10){
+            currentTime = timePicker.getHour()+":0"+timePicker.getMinute();
+        }else{
+            currentTime = timePicker.getHour()+":"+timePicker.getMinute();
+        }
+        return currentTime;
+
+
+    }
+}

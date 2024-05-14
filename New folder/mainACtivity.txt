@@ -1,0 +1,70 @@
+package com.example.day4;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    ImageView imageView;
+    CheckBox chb1,chb2,chb3;
+    Button btn1,btn2;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        imageView = findViewById(R.id.pic);
+        
+        chb1 = findViewById(R.id.pp);
+        chb2 = findViewById(R.id.sakku);
+        chb3 = findViewById(R.id.lucas);
+        
+        btn1 = findViewById(R.id.btn);
+        btn2 = findViewById(R.id.btn2);
+        
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StringBuilder result = new StringBuilder();
+                if (chb1.isChecked()){
+                    result.append(chb1.getText().toString());
+                }
+                if (chb2.isChecked()){
+                    result.append(chb2.getText().toString());
+                }
+                if (chb3.isChecked()){
+                    result.append(chb3.getText().toString());
+                }
+                if (result.length()==0){
+                    Toast.makeText(MainActivity.this, "Please pick one", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Toast.makeText(MainActivity.this, "Your fav teacher is/are " + result, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chb1.setChecked(false);
+                chb2.setChecked(false);
+                chb3.setChecked(false);
+            }
+        });
+
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}

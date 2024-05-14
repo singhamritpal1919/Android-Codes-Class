@@ -1,0 +1,50 @@
+package com.example.day4;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+
+public class MainActivity2 extends AppCompatActivity {
+    
+    RadioGroup radioGroup;
+    RadioButton radioButtonSelected;
+    Button btn1,btn2;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+        
+        radioGroup = findViewById(R.id.rgr);
+        btn1 = findViewById(R.id.btn3);
+        btn2 = findViewById(R.id.btn4);
+        
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int selectedRadioButtonID = radioGroup.getCheckedRadioButtonId();
+                if(selectedRadioButtonID != -1){
+                    radioButtonSelected = findViewById(selectedRadioButtonID);
+                    String result = radioButtonSelected.getText().toString();
+                    Toast.makeText(MainActivity2.this, "You are " + result, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(MainActivity2.this, "Please pick something", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                radioGroup.clearCheck();
+                Toast.makeText(MainActivity2.this, "Done", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}

@@ -1,0 +1,42 @@
+package com.example.datepickerexcer;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    DatePicker datePicker;
+    Button btn;
+    TextView textView;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        datePicker = findViewById(R.id.datepicker);
+        btn = findViewById(R.id.btn7);
+        textView = findViewById(R.id.showdata);
+
+        textView.setText("current date is");
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                textView.setText("Birthday is " + getCurrentDate()) ;
+            }
+        });
+    }
+
+    public String getCurrentDate(){
+        StringBuilder result = new StringBuilder();
+        result.append(datePicker.getMonth()+1 + "/");
+        result.append(datePicker.getDayOfMonth() + "/");
+        result.append(datePicker.getYear());
+        return result.toString();
+    }
+}
